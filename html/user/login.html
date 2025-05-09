@@ -18,6 +18,7 @@
     </style>
 </head>
 <body>
+    <img src="" id="profile" style="display:none">
     <div class="container">
         <div class="login">
             <h2 class="text-center mb-4">로그인</h2>
@@ -65,6 +66,10 @@
         });
         const user = await res.json();
         console.log(user);
+        if(user.uiImgPath){
+            $('#profile').attr('src',`http://localhost:8080/file/${user.uiImgPath}`);
+            $('#profile').css('display','');
+        }
     }
 </script>
 </body>
