@@ -65,10 +65,15 @@
             body : JSON.stringify(param)
         });
         const user = await res.json();
-        console.log(user);
-        if(user.uiImgPath){
-            $('#profile').attr('src',`http://localhost:8080/file/${user.uiImgPath}`);
-            $('#profile').css('display','');
+        if(user.error){
+            alert(user.message);
+            return;
+        }
+        if(user){
+            for(const key in user){
+                localStorage.setItem(key, user[key]);
+            }
+            location.href='/';
         }
     }
 </script>
